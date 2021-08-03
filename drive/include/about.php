@@ -7,19 +7,19 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
-    <title>Index</title>
+    <title>About</title>
 </head>
 <body>
-    <div id="wrapper">
-        <header>
-            <?php include 'elems/header.php';?>
-        </header>
-        <main>
-            <?php if (file_exists('elems/main.php')) { include 'elems/main.php';} ;?>
-        </main>
-        <footer>
-            footer
-        </footer>
-    </div>
+<div id="wrapper">
+    <header>
+
+    </header>
+    <main>
+
+    </main>
+    <footer>
+
+    </footer>
+</div>
 </body>
 </html>
