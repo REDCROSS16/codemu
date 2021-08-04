@@ -13,7 +13,7 @@ require_once 'config.php';
 require_once 'func.php';
 if (isset($_GET['del'])) {
     deleteWorker($_GET['del']);
-    header('Location: index2.php');
+    header('Location: index.php');
 }
 
 if (isset($_POST['submit'])) {
