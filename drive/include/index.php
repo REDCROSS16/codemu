@@ -7,7 +7,3 @@ if (file_exists($path)) {
 } else {
     echo "file $path не найден";
 }
-
-
-
-123123
