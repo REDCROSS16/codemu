@@ -13,10 +13,10 @@
         <li><a href="#">1</a></li>
         <li><span>Sub2</span>
             <ul>
-                <li><a href="#">Main</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contacts</a></li>
-                <li><a href="#">News</a></li>
+                <li><a href="pages/main">Main</a></li>
+                <li><a href="about.php">About</a></li>
+                <li><a href="pages/contacts">Contacts</a></li>
+                <li><a href="pages/news">News</a></li>
             </ul>
         </li>
         <li><a href="#">3</a></li>

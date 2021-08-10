@@ -7,12 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./elems/nav/nav.css">
     <title>About</title>
 </head>
 <body>
 <div id="wrapper">
     <header>
-
+        <?php include 'elems/nav/nav.php';?>
     </header>
     <main>
 
@@ -20,6 +22,7 @@
     <footer>
 
     </footer>
+    <script src="elems/nav/nav.js"></script>
 </div>
 </body>
 </html>
