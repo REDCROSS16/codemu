@@ -13,7 +13,12 @@
 <body>
     <div id="wrapper">
         <header>
-            <?php include 'elems/nav/nav.php';?>
+
+            <?php
+            # подключение модуля nav
+            include 'elems/nav/nav.php';
+            ?>
+            
         </header>
         <main>
             <?php if (file_exists('elems/main.php')) { include 'elems/main.php';} ;?>
