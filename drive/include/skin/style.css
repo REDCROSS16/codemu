@@ -9,3 +9,14 @@ body {
     background: #0c4128;
 }
 
+.font {
+    color: yellow;
+    font-weight: 600;
+}
+
+.paragraph {
+    font-style: italic;
+    width: 800px;
+    float: right;
+}
+
