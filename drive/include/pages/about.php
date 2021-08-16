@@ -1,4 +1,4 @@
-<h2>About</h2>
+{{title: About page ;)}}
 
 
 <?php

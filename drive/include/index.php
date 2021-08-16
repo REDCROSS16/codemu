@@ -3,8 +3,16 @@
 $page = $_GET['page'];
 $path = "pages/$page.php";
 if (file_exists($path)) {
-//    include $path;
-    $content = file_get_contents($path);
+    $page = file_get_contents($path);
+
+    if (preg_match("/\{\{title:(.*?)\}\}/", $page, $match)) {
+        $title = $match[1];
+
+    } else {
+        $title = '';
+    }
+    $content = preg_replace('#\{\{title:(.*?)\}\}#', '', $page);
+
 } else {
     $content = 'file not found';
 }
@@ -15,7 +23,7 @@ if (file_exists($path)) {
 <html lang="en">
 <head>
     <?php include 'elems/head.php';?>
-    <title>Index</title>
+    <title><?= $title;?></title>
 </head>
 <body>
     <nav> <?php include 'elems/nav/nav.php';?> </nav>
