@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="./elems/nav/nav.css">
+    <link rel="stylesheet" href="../elems/nav/nav.css">
     <title>About</title>
 </head>
 <body>
@@ -22,7 +22,7 @@
     <footer>
 
     </footer>
-    <script src="elems/nav/nav.js"></script>
+    <script src="../elems/nav/nav.js"></script>
 </div>
 </body>
 </html>
