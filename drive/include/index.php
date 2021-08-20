@@ -19,4 +19,3 @@ if (file_exists($path)) {
     $content = 'file not found';
 }
 include 'layout.php';
-?>
