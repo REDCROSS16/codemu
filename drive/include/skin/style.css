@@ -24,3 +24,18 @@ body {
     color: yellow;
 }
 
+header a {
+    color: white;
+    font-weight: 800;
+    text-decoration: none;
+    margin-right: 5px;
+    font-size: 18px;
+}
+
+header a.active {
+    color: yellow;
+    text-decoration: underline;
+}
+header a:hover {
+    color: yellow;
+}

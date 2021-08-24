@@ -5,7 +5,7 @@
     <title><?= $title;?></title>
 </head>
 <body>
-<nav> <?php include 'elems/nav/nav.php';?> </nav>
+<!--<nav> --><?php //include 'elems/nav/nav.php';?><!-- </nav>-->
 <div id="wrapper">
     <header>
         <?php
