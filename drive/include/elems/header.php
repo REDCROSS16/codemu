@@ -19,6 +19,7 @@ $result = mysqli_query($db, $query);
 for ($data = []; $row = mysqli_fetch_assoc($result); $data[] = $row);
 
 foreach ( $data as $page) {
+    if ($page['url'] == '404') continue;
     createLink('/codemu/drive/include/?page=' . $page['url'], $page['text']);
 }
 
