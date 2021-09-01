@@ -20,9 +20,6 @@ if ($page) {
     header("HTTP/1.0 404 Not found");
 }
 
-
-
-
 # без использования БД
 //$path = "pages/$page.php";
 //if (file_exists($path)) {
