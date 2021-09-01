@@ -21,7 +21,7 @@ $content = '<table class="table">'
     . '<tr>'
         . '<th> title </th>'
         . '<th> url </th>'
-        . '<th> edit </th>'
+        . '<th> edit</th>'
         . '<th> delete </th>'
     . '</tr>';
 foreach ($data as $page) {
@@ -35,12 +35,5 @@ foreach ($data as $page) {
 
 
 $title = 'Admin main page';
-//if ($page) {
-//    $title = $page['title'];
-//    $content = $page['text'];
-//} else {
-//    $content = file_get_contents("pages/404.php");
-//    header("HTTP/1.0 404 Not found");
-//}
 
 include 'layout.php';

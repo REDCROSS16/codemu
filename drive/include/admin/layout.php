@@ -1,7 +1,8 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <?php include '../elems/head.php';?>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style/style.css">
     <title><?= $title;?></title>
 </head>
 <body>
@@ -21,6 +22,5 @@
         include '../elems/footer.php';?>
     </footer>
 </div>
-<script src="../elems/nav/nav.js"></script>
 </body>
 </html>
