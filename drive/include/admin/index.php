@@ -29,7 +29,7 @@ foreach ($data as $page) {
         . '<td>' . $page['title'] . '</td>'
         . '<td>' . $page['url'] . '</td>'
         . '<td>' . '<a href="#">edit</a>' . '</td>'
-        . '<td>' . '<a href="#">delete</a>' . '</td>'
+            . '<td>' . "<a href='?delete={$page['id']}'>delete</a></td>"
         . '</tr>';
 }
 
@@ -37,3 +37,15 @@ foreach ($data as $page) {
 $title = 'Admin main page';
 
 include 'layout.php';
+
+# функция удаления страницы
+function deletePage($pageId)
+{
+    $db = connect();
+    $query = "Delete $pageId FROM pages";
+    if (mysqli_query($db, $query)) {
+        return true;
+    } else {
+        return false;
+    }
+}
