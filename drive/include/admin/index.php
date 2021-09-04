@@ -49,3 +49,9 @@ function deletePage($pageId)
         return false;
     }
 }
+
+$info = '';
+
+if (deletePage($link)) {
+    $info = "page $link delete succesful";
+}
