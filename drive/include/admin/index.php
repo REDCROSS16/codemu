@@ -39,19 +39,24 @@ $title = 'Admin main page';
 include 'layout.php';
 
 # функция удаления страницы
-function deletePage($pageId)
+function deletePage($db)
 {
-    $db = connect();
-    $query = "Delete $pageId FROM pages";
-    if (mysqli_query($db, $query)) {
-        return true;
-    } else {
-        return false;
+    if (isset($_GET['delete'])) {
+        $id = $_GET['delete'];
+
+        $query = "Delete FROM pages where id=$id";
+        if (mysqli_query($db, $query)) {
+            return true;
+        } else {
+            return false;
+        }
     }
+
+
 }
 
 $info = '';
-
-if (deletePage($link)) {
-    $info = "page $link delete succesful";
+$isDelete = deletePage($db);
+if ($isDelete) {
+    $info = "page delete succesful";
 }

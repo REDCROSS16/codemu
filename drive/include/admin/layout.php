@@ -14,6 +14,7 @@
         include '../elems/header.php';?>
     </header>
     <main>
+        <?php if ($info) echo "<p class='info'>$info</p>";?>
         <?php echo $content; ?>
     </main>
     <footer>
