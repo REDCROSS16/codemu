@@ -43,20 +43,18 @@ function deletePage($db)
 {
     if (isset($_GET['delete'])) {
         $id = $_GET['delete'];
-
         $query = "Delete FROM pages where id=$id";
         if (mysqli_query($db, $query)) {
             return true;
         } else {
-            return false;
+            return  false;
         }
     }
-
-
 }
 
 $info = '';
 $isDelete = deletePage($db);
+
 if ($isDelete) {
     $info = "page delete succesful";
 }
