@@ -6,7 +6,7 @@ const PASSWORD1 = 'root';
 const DB_NAME1 = 'test_16';
 
 
-function connect ($host, $user, $password, $db_name) {
-    $db = mysqli_connect($host, $user, $password, $db_name);
+function connect () {
+    $db = mysqli_connect(HOST1, USER1, PASSWORD1, DB_NAME1);
     return $db;
 }

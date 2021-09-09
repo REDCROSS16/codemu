@@ -7,7 +7,7 @@ if (isset($_GET['page'])) {
 }
 # подключение к
 include 'db/db.php';
-$db = connect(HOST1, USER1, PASSWORD1, DB_NAME1);
+$db = connect();
 $query = "SELECT * FROM pages WHERE url='$page'";
 $result = mysqli_query($db, $query);
 $page = mysqli_fetch_assoc($result);

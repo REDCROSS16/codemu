@@ -33,6 +33,7 @@ foreach ($data as $page) {
         . '</tr>';
 }
 
+$content.= addPageButton();
 
 $title = 'Admin main page';
 
@@ -57,4 +58,10 @@ $isDelete = deletePage($db);
 
 if ($isDelete) {
     $info = "page delete succesful";
+}
+
+function addPageButton() : string
+{
+    $out = '<a href="addPage.php"><button class="">Add Page</button></a>';
+    return $out;
 }

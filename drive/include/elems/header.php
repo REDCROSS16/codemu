@@ -14,7 +14,7 @@ function createLink($href, $text) {
 //createLink('/codemu/drive/include/?page=contacts', 'Contacts');
 
 $query = 'SELECT * FROM pages';
-$result = mysqli_query($db, $query);
+$result = mysqli_query(connect(), $query);
 
 for ($data = []; $row = mysqli_fetch_assoc($result); $data[] = $row);
 
