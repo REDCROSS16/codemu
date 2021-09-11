@@ -18,6 +18,13 @@ function addPage () {
     return true;
 }
 
+function checkPage ($url) {
+    $db = connect();
+    $query = 'SELECT COUNT FROM pages WHERE url = $url';
+    $res = mysqli_query($db, $query);
+    return $res;
+}
+
 $title = 'Add page';
 
 include 'layout.php';
