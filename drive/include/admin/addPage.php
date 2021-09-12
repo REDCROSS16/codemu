@@ -20,9 +20,10 @@ function addPage () {
 
 function checkPage ($url) {
     $db = connect();
-    $query = 'SELECT COUNT FROM pages WHERE url = $url';
-    $res = mysqli_query($db, $query);
-    return $res;
+    $query = 'SELECT COUNT(*) as count FROM pages WHERE url = $url';
+    $res = mysqli_query($db, $query) or die($db);
+    $isPage = mysqli_fetch_assoc($res)['count'];
+    return $isPage;
 }
 
 $title = 'Add page';
