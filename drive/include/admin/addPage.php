@@ -13,6 +13,9 @@ function addPage () {
     $url = $_POST['url'];
     $text = $_POST['text'];
     $db = connect();
+
+    if (checkPage($url)) { return false; }
+
     $query = "INSERT INTO pages (title, url, text) VALUES('$title', '$url', '$text')";
     mysqli_query($db, $query);
     return true;
@@ -20,17 +23,22 @@ function addPage () {
 
 function checkPage ($url) {
     $db = connect();
-    $query = 'SELECT COUNT(*) as count FROM pages WHERE url = $url';
-    $res = mysqli_query($db, $query) or die($db);
+    $query = "SELECT COUNT(*) as count FROM pages WHERE url = '$url'";
+    $res = mysqli_query($db, $query);
     $isPage = mysqli_fetch_assoc($res)['count'];
-    return $isPage;
+    return (bool)$isPage;
 }
 
 $title = 'Add page';
 
-include 'layout.php';
+
 
 if (isset($_POST['submit'])) {
-    addPage();
-    var_dump($_POST);
+    if (addPage()) {
+        $info = '<span class="succes" style="color:green">Page added succesful</span>';
+    } else {
+        $info = '<span class="nosucces" style="color:red">Page not added (exists!)</span>';
+    }
+
 }
+include 'layout.php';

@@ -56,9 +56,7 @@ function deletePage($db)
 $info = '';
 $isDelete = deletePage($db);
 
-if ($isDelete) {
-    $info = "page delete succesful";
-}
+if ($isDelete) { $info = "page delete succesful"; }
 
 function addPageButton() : string
 {
