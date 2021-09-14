@@ -16,7 +16,6 @@ $result = mysqli_query($db, $query);
 $page = mysqli_fetch_assoc($result);
 
 for ($data = []; $row = mysqli_fetch_assoc($result); $data[] = $row);
-
 $content = '<table class="table">'
     . '<tr>'
         . '<th> title </th>'
