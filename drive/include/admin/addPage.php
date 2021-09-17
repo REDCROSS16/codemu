@@ -35,7 +35,8 @@ $title = 'Add page';
 
 if (isset($_POST['submit'])) {
     if (addPage()) {
-        $info = '<span class="succes" style="color:green">Page added succesful</span>';
+        header('Location: /codemu/drive/include/admin/?added=true');
+
     } else {
         $info = '<span class="nosucces" style="color:red">Page not added (exists!)</span>';
     }

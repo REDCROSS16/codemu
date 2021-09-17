@@ -34,9 +34,11 @@ foreach ($data as $page) {
 
 $content.= addPageButton();
 
+
+
 $title = 'Admin main page';
 
-include 'layout.php';
+
 
 # функция удаления страницы
 function deletePage($db)
@@ -57,8 +59,17 @@ $isDelete = deletePage($db);
 
 if ($isDelete) { $info = "page delete succesful"; }
 
+if (isset($_GET['added'])) {
+    $info = '<span class="succes" style="color:green">Page added succesful</span>';
+}
+
+/**
+ * Метод описывает кнопку добавить
+ */
 function addPageButton() : string
 {
     $out = '<a href="addPage.php"><button class="">Add Page</button></a>';
     return $out;
 }
+
+include 'layout.php';
