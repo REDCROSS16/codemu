@@ -27,7 +27,7 @@ foreach ($data as $page) {
     $content .= '<tr>'
         . '<td>' . $page['title'] . '</td>'
         . '<td>' . $page['url'] . '</td>'
-        . '<td>' . '<a href="#">edit</a>' . '</td>'
+        . '<td>' . "<a href='?edit={$page['id']}'>edit</a></td>"
             . '<td>' . "<a href='?delete={$page['id']}'>delete</a></td>"
         . '</tr>';
 }
