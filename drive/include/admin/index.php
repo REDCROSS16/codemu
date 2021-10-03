@@ -15,6 +15,12 @@ $query = 'SELECT id, title, url FROM pages';
 $result = mysqli_query($db, $query);
 $page = mysqli_fetch_assoc($result);
 
+if ($_GET['edit']) {
+    editPage();
+    include 'edit.php';
+}
+
+
 for ($data = []; $row = mysqli_fetch_assoc($result); $data[] = $row);
 $content = '<table class="table">'
     . '<tr>'
@@ -33,8 +39,6 @@ foreach ($data as $page) {
 }
 
 $content.= addPageButton();
-
-
 
 $title = 'Admin main page';
 
@@ -70,6 +74,13 @@ function addPageButton() : string
 {
     $out = '<a href="addPage.php"><button class="">Add Page</button></a>';
     return $out;
+}
+
+
+function editPage() {
+    if (isset($_GET['edit'])) {
+        var_dump($_GET);
+    }
 }
 
 include 'layout.php';
