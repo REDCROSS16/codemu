@@ -17,11 +17,12 @@ $content = '<div style="display: flex; justify-content: center;align-items: cent
 
 function getContent ($pageId)
 {
-//    $db = connect();
+    $db = connect();
     $query = "SELECT * FROM pages WHERE id=$pageId";
     $result = mysqli_query($db, $query);
     var_dump($result);
 }
 
 
-//getContent($_GET['edit']);
+getContent($_GET['edit']);
+echo 'result';
