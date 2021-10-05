@@ -25,4 +25,3 @@ function getContent ($pageId)
 
 
 getContent($_GET['edit']);
-echo 'result';
