@@ -33,7 +33,7 @@ foreach ($data as $page) {
     $content .= '<tr>'
         . '<td>' . $page['title'] . '</td>'
         . '<td>' . $page['url'] . '</td>'
-        . '<td>' . "<a href='/codemu/drive/include/admin/edit.php?edit={$page['id']}'>edit</a></td>"
+        . '<td>' . "<a href='/codemu/drive/include/admin/edit.php?id={$page['id']}'>edit</a></td>"
             . '<td>' . "<a href='?delete={$page['id']}'>delete</a></td>"
         . '</tr>';
 }
