@@ -23,7 +23,7 @@ function getContent ($pageId)
         . '<textarea name="text" class="form-control" style="width: 500px">'. $page['text'] .'</textarea><br><br>'
         . '<input type="submit" name="submit" class="btn btn-primary">'
         .'</form></div>';
-
+    echo $content;
     include 'layout.php';
 }
 
