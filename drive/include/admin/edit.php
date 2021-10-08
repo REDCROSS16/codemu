@@ -9,7 +9,9 @@ include '../db/db.php';
 
 
 // получение информации о контенте для редактирования
-
+/**
+ * @param $pageId
+ */
 function getContent ($pageId)
 {
     $db = connect();
