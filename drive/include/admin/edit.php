@@ -19,6 +19,10 @@ function getContent ($pageId)
     $result = mysqli_query($db, $query);
     $page = mysqli_fetch_assoc($result);
 
+    if (!$page) {
+        $content = 'page not found';
+    }
+
     $content = '<div style="display: flex; justify-content: center;align-items: center"><form method="post" action=""><br><br>'
         . '<input name="title" class="form-control" style="width: 500px" placeholder="type title" value="' . $page["title"] . '"><br><br>'
         . '<input name="url" class="form-control" style="width: 500px" placeholder="type url" value="' . $page["url"] .'"><br><br>'
