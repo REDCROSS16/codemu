@@ -1,5 +1,5 @@
 <?php
-include '../db/db.php';
+include 'functions.php';
 
 $content = '<div style="display: flex; justify-content: center;align-items: center"><form method="post" action=""><br><br>'
         . '<input name="title" class="form-control" style="width: 500px" placeholder="type title" value="' . $_POST["title"] . '"><br><br>'
@@ -21,17 +21,7 @@ function addPage () {
     return true;
 }
 
-function checkPage ($url) {
-    $db = connect();
-    $query = "SELECT COUNT(*) as count FROM pages WHERE url = '$url'";
-    $res = mysqli_query($db, $query);
-    $isPage = mysqli_fetch_assoc($res)['count'];
-    return (bool)$isPage;
-}
-
 $title = 'Add page';
-
-
 
 if (isset($_POST['submit'])) {
     if (addPage()) {

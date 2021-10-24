@@ -14,7 +14,11 @@
         include '../elems/header.php';?>
     </header>
     <main>
-        <?php if ($info) echo "<p class='info'>$info</p>";?>
+        <?php if ($info['status'] == 'success') {
+            echo "<p class='info text-success'>" . $info['text'] . "</p>";
+            } else {
+            echo "<p class='info text-fail'>" . 'fail' . "</p>";
+        }?>
         <?php echo $content; ?>
     </main>
     <footer>
