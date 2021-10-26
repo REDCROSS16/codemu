@@ -32,25 +32,49 @@ function getPage ($link, $info)
     }
     // $content выводится в лайоут
     include 'layout.php';
+    return;
 }
 
 function savePage($db) {
-
     if (isset($_POST['title']) && isset($_POST['url']) && isset($_POST['text'])) {
         $title = $_POST['title'];
         $url = $_POST['url'];
         $text = $_POST['text'];
-        $id = $_GET['id'];
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+            $query = 'SELECT * FROM pages WHERE id = ' . $id;
+            $result = mysqli_query($db, $query);
+            $page = mysqli_fetch_assoc($result);
 
-//        if (checkPage($url)) { return false; }
+            if ($page['url'] !== $url) {
+                $query = "SELECT COUNT(*) as count FROM pages WHERE url='$url'";
+                var_dump($query);
+                $result = mysqli_query($db, $query);
+                var_dump($result);
+                $isPage = mysqli_fetch_assoc($result)['count'];
 
-        $query = "UPDATE pages SET title = '$title' , url = '$url', text = '$text'  WHERE id= $id";
-        mysqli_query($db, $query);
+                if ($isPage === 1) {
+                    return [
+                        'text'   => 'This url is used',
+                        'status' => 'error'
+                    ];
+                }
 
-        return [
-            'text' => 'Page edited successful',
-            'status' => 'success'
-        ];
+            }
+
+            $query = "UPDATE pages SET title = '$title' , url = '$url', text = '$text'  WHERE id= $id";
+            mysqli_query($db, $query);
+
+            return [
+                'text' => 'Page edited successful',
+                'status' => 'success'
+            ];
+
+        }
+
+
+    } else {
+        return false;
     }
 }
 //if (isset($_GET['submit'])) {

@@ -17,7 +17,7 @@
         <?php if ($info['status'] == 'success') {
             echo "<p class='info text-success'>" . $info['text'] . "</p>";
             } else {
-            echo "<p class='info text-fail'>" . 'fail' . "</p>";
+            echo "<p class='info text-fail'>" . $info['text'] . "</p>";
         }?>
         <?php echo $content; ?>
     </main>
