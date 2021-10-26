@@ -12,27 +12,48 @@ $db = connect();
  */
 function getPage ($link, $info)
 {
-    $id = $_GET['id'];
-    $query = "SELECT * FROM pages WHERE id=$id";
-    $result = mysqli_query($link, $query);
-    $page = mysqli_fetch_assoc($result);
+    if (isset($_GET['id'])) {
+        $id = $_GET['id'];
+        $query = "SELECT * FROM pages WHERE id=$id";
+        $result = mysqli_query($link, $query);
+        $page = mysqli_fetch_assoc($result);
+        include 'layout.php';
 
-    if (!$page) {
-        $content = '<div><p>page not found</p></div>';
+        if ($page) {
+            $pageExists = true;
+
+            if (isset($_POST['title']) && isset($_POST['url']) && isset($_POST['text'])) {
+                $title = mysqli_real_escape_string($link, $_POST['title']);
+                $url = mysqli_real_escape_string($link, $_POST['url']);
+                $text = mysqli_real_escape_string($link, $_POST['text'] );
+            } else {
+                $title = $page['title'];
+                $url = $page['url'];
+                $text = $page['text'];
+            }
+
+            ob_clean();
+            include ('../elems/admin/form.php');
+            $content = ob_get_clean();
+//            $content = '<div style="display: flex; justify-content: center;align-items: center"><form method="POST" action=""><br><br>'
+//                . '<label>Заголовок</label>'
+//                . '<input name="title" class="form-control" style="width: 500px" placeholder="type title" value="' . $title . '"><br>'
+//                . '<label>URL</label>'
+//                . '<input name="url" class="form-control" style="width: 500px" placeholder="type url" value="' . $url . '"><br>'
+//                . '<label>Текст</label>'
+//                . '<textarea name="text" class="form-control" style="width: 500px">' . $text . '</textarea><br><br>'
+//                . '<input type="submit" name="submit" class="btn btn-primary">'
+//                . '</form></div>';
+
+        } else {
+            $pageExists = false;
+            $content = '<div><p>page not found</p></div>';
+        }
     } else {
-        $content = '<div style="display: flex; justify-content: center;align-items: center"><form method="POST" action=""><br><br>'
-            . '<label>Заголовок</label>'
-            . '<input name="title" class="form-control" style="width: 500px" placeholder="type title" value="' . $page["title"] . '"><br>'
-            . '<label>URL</label>'
-            . '<input name="url" class="form-control" style="width: 500px" placeholder="type url" value="' . $page["url"] .'"><br>'
-            . '<label>Текст</label>'
-            . '<textarea name="text" class="form-control" style="width: 500px">'. $page['text'] .'</textarea><br><br>'
-            . '<input type="submit" name="submit" class="btn btn-primary">'
-            .'</form></div>';
+        $content = "PAGE NOT FOUND, H4CK3R HA-HA-HA";
     }
     // $content выводится в лайоут
-    include 'layout.php';
-    return;
+    return '';
 }
 
 function savePage($db) {
@@ -42,20 +63,18 @@ function savePage($db) {
         $text = $_POST['text'];
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
-            $query = 'SELECT * FROM pages WHERE id = ' . $id;
+            $query = "SELECT * FROM pages WHERE id = $id";
             $result = mysqli_query($db, $query);
             $page = mysqli_fetch_assoc($result);
 
             if ($page['url'] !== $url) {
                 $query = "SELECT COUNT(*) as count FROM pages WHERE url='$url'";
-                var_dump($query);
                 $result = mysqli_query($db, $query);
-                var_dump($result);
                 $isPage = mysqli_fetch_assoc($result)['count'];
 
-                if ($isPage === 1) {
+                if ($isPage == 1) {
                     return [
-                        'text'   => 'This url is used',
+                        'text'   => 'This URL is exists!',
                         'status' => 'error'
                     ];
                 }

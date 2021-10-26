@@ -14,10 +14,13 @@
         include '../elems/header.php';?>
     </header>
     <main>
-        <?php if ($info['status'] == 'success') {
-            echo "<p class='info text-success'>" . $info['text'] . "</p>";
+
+        <?php if (isset($info)){
+            if ($info['status'] == 'success') {
+                echo "<p class='info text-success'>" . $info['text'] . "</p>";
             } else {
-            echo "<p class='info text-fail'>" . $info['text'] . "</p>";
+                echo "<p class='info text-fail'>" . $info['text'] . "</p>";
+            }
         }?>
         <?php echo $content; ?>
     </main>

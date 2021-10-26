@@ -1,18 +1,17 @@
 <?php
 include 'functions.php';
 
-$content = '<div style="display: flex; justify-content: center;align-items: center"><form method="post" action=""><br><br>'
-        . '<input name="title" class="form-control" style="width: 500px" placeholder="type title" value="' . $_POST["title"] . '"><br><br>'
-        . '<input name="url" class="form-control" style="width: 500px" placeholder="type url" value="' . $_POST["url"] .'"><br><br>'
-        . '<textarea name="text" class="form-control" style="width: 500px">'. $_POST['text'] .'</textarea><br><br>'
-    . '<input type="submit" name="submit" class="btn btn-primary">'
-    .'</form></div>';
+// загружаем форму через отдельный элемент
+ob_start();
+include ('../elems/admin/form.php');
+$content = ob_get_clean();
 
 function addPage () {
-    $title = $_POST['title'];
-    $url = $_POST['url'];
-    $text = $_POST['text'];
     $db = connect();
+    $title = mysqli_real_escape_string($db, $_POST['title']);
+    $url = mysqli_real_escape_string($db, $_POST['url']);
+    $text = mysqli_real_escape_string($db, $_POST['title']);;
+
 
     if (checkPage($url)) { return false; }
 
@@ -26,7 +25,6 @@ $title = 'Add page';
 if (isset($_POST['submit'])) {
     if (addPage()) {
         header('Location: /codemu/drive/include/admin/?added=true');
-
     } else {
         $info = '<span class="nosucces" style="color:red">Page not added (exists!)</span>';
     }

@@ -58,7 +58,10 @@ function deletePage($db)
     }
 }
 
-$info = '';
+$info = [
+    'text' => '',
+    'status' => ''
+];
 $isDelete = deletePage($db);
 
 if ($isDelete) { $info = "page delete succesful"; }
