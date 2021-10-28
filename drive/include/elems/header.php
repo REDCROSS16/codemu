@@ -24,5 +24,3 @@ foreach ( $data as $page) {
 }
 createLink('/codemu/drive/include/admin', 'ADMIN');
 createLink('/codemu/drive/include/admin', 'LOGIN');
-
-?>

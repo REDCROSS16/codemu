@@ -10,41 +10,33 @@ $db = connect();
 /**
  * @param $pageId
  */
-function getPage ($link, $info)
+function getPage ($db, $info)
 {
+
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
         $query = "SELECT * FROM pages WHERE id=$id";
-        $result = mysqli_query($link, $query);
-        $page = mysqli_fetch_assoc($result);
+        $result = mysqli_query($db, $query);
+        $p = mysqli_fetch_assoc($result);
+
         include 'layout.php';
 
-        if ($page) {
+        if ($p) {
             $pageExists = true;
 
             if (isset($_POST['title']) && isset($_POST['url']) && isset($_POST['text'])) {
-                $title = mysqli_real_escape_string($link, $_POST['title']);
-                $url = mysqli_real_escape_string($link, $_POST['url']);
-                $text = mysqli_real_escape_string($link, $_POST['text'] );
+                $title = mysqli_real_escape_string($db, $_POST['title']);
+                $url = mysqli_real_escape_string($db, $_POST['url']);
+                $text = mysqli_real_escape_string($db, $_POST['text'] );
             } else {
-                $title = $page['title'];
-                $url = $page['url'];
-                $text = $page['text'];
+                $title = $p['title'];
+                $url = $p['url'];
+                $text = $p['text'];
             }
 
             ob_clean();
             include ('../elems/admin/form.php');
             $content = ob_get_clean();
-//            $content = '<div style="display: flex; justify-content: center;align-items: center"><form method="POST" action=""><br><br>'
-//                . '<label>Заголовок</label>'
-//                . '<input name="title" class="form-control" style="width: 500px" placeholder="type title" value="' . $title . '"><br>'
-//                . '<label>URL</label>'
-//                . '<input name="url" class="form-control" style="width: 500px" placeholder="type url" value="' . $url . '"><br>'
-//                . '<label>Текст</label>'
-//                . '<textarea name="text" class="form-control" style="width: 500px">' . $text . '</textarea><br><br>'
-//                . '<input type="submit" name="submit" class="btn btn-primary">'
-//                . '</form></div>';
-
         } else {
             $pageExists = false;
             $content = '<div><p>page not found</p></div>';
@@ -73,8 +65,8 @@ function savePage($db) {
                 $isPage = mysqli_fetch_assoc($result)['count'];
 
                 if ($isPage == 1) {
-                    return [
-                        'text'   => 'This URL is exists!',
+                    $_SESSION['message'] = [
+                        'text' => 'This URL is exists!',
                         'status' => 'error'
                     ];
                 }
@@ -84,14 +76,11 @@ function savePage($db) {
             $query = "UPDATE pages SET title = '$title' , url = '$url', text = '$text'  WHERE id= $id";
             mysqli_query($db, $query);
 
-            return [
+            $_SESSION['message'] = [
                 'text' => 'Page edited successful',
                 'status' => 'success'
             ];
-
         }
-
-
     } else {
         return false;
     }

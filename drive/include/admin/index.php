@@ -1,25 +1,21 @@
 <?php
 
+session_start();
 # роутинг
 if (isset($_GET['page'])) {
     $page = $page = $_GET['page'];
 } else {
     $page = 'index';
 }
-# подключение к
+# подключение к БД
 include '../db/db.php';
 
-$db = connect(HOST1, USER1, PASSWORD1, DB_NAME1);
+//$db = connect(HOST1, USER1, PASSWORD1, DB_NAME1);
+$db = connect();
 $query = 'SELECT id, title, url FROM pages';
 
 $result = mysqli_query($db, $query);
 $page = mysqli_fetch_assoc($result);
-
-if ($_GET['edit']) {
-    editPage();
-    include 'edit.php';
-}
-
 
 for ($data = []; $row = mysqli_fetch_assoc($result); $data[] = $row);
 $content = '<table class="table">'
@@ -30,19 +26,18 @@ $content = '<table class="table">'
         . '<th> delete </th>'
     . '</tr>';
 foreach ($data as $page) {
-    $content .= '<tr>'
-        . '<td>' . $page['title'] . '</td>'
-        . '<td>' . $page['url'] . '</td>'
-        . '<td>' . "<a href='/codemu/drive/include/admin/edit.php?id={$page['id']}'>edit</a></td>"
-            . '<td>' . "<a href='?delete={$page['id']}'>delete</a></td>"
+    $content .=
+        '<tr>'
+            . '<td>' . $page['title'] . '</td>'
+            . '<td>' . $page['url'] . '</td>'
+            . '<td>' . "<a href='/codemu/drive/include/admin/edit.php?id={$page['id']}'><button class='btn btn-outline-light'>edit</button></a></td>"
+            . '<td>' . "<a href='?delete={$page['id']}'><button class='btn btn-danger'>delete</button></a></td>"
         . '</tr>';
 }
 
 $content.= addPageButton();
 
 $title = 'Admin main page';
-
-
 
 # функция удаления страницы
 function deletePage($db)
@@ -51,23 +46,25 @@ function deletePage($db)
         $id = $_GET['delete'];
         $query = "Delete FROM pages where id=$id";
         if (mysqli_query($db, $query)) {
-            return true;
+            $_SESSION['message'] = [
+                'text' => 'page removed successfully',
+                'status' => 'success'
+            ];
+            header('Location: /codemu/drive/include/admin');
         } else {
+            $_SESSION['message'] = [
+                'text' => 'page not removed',
+                'status' => 'error'
+            ];
             return  false;
         }
     }
 }
 
-$info = [
-    'text' => '',
-    'status' => ''
-];
 $isDelete = deletePage($db);
 
-if ($isDelete) { $info = "page delete succesful"; }
-
 if (isset($_GET['added'])) {
-    $info = '<span class="succes" style="color:green">Page added succesful</span>';
+    $info = '<span class="success" style="color:green">Page added succesful</span>';
 }
 
 /**
@@ -75,15 +72,8 @@ if (isset($_GET['added'])) {
  */
 function addPageButton() : string
 {
-    $out = '<a href="addPage.php"><button class="">Add Page</button></a>';
+    $out = '<a href="add.php"><button class="btn btn-danger">Add Page</button></a>';
     return $out;
-}
-
-
-function editPage() {
-    if (isset($_GET['edit'])) {
-        var_dump($_GET);
-    }
 }
 
 include 'layout.php';
