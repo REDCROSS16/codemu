@@ -64,6 +64,8 @@ function deletePage($db)
 $isDelete = deletePage($db);
 
 if (isset($_GET['added'])) {
+
+
     $info = '<span class="success" style="color:green">Page added succesful</span>';
 }
 
@@ -72,7 +74,7 @@ if (isset($_GET['added'])) {
  */
 function addPageButton() : string
 {
-    $out = '<a href="add.php"><button class="btn btn-danger">Add Page</button></a>';
+    $out = '<a href="add.php"><button class="btn btn-info">Add Page</button></a>';
     return $out;
 }
 
