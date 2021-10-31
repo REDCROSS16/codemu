@@ -14,6 +14,16 @@ include '../db/db.php';
 $db = connect();
 $query = 'SELECT id, title, url FROM pages';
 
+/**
+ * Метод описывает кнопку добавить
+ */
+function addPageButton() : string
+{
+    $out = '<a href="add.php"><button class="btn btn-info">Add Page</button></a>';
+    return $out;
+}
+
+
 $result = mysqli_query($db, $query);
 $page = mysqli_fetch_assoc($result);
 
@@ -69,13 +79,6 @@ if (isset($_GET['added'])) {
     $info = '<span class="success" style="color:green">Page added succesful</span>';
 }
 
-/**
- * Метод описывает кнопку добавить
- */
-function addPageButton() : string
-{
-    $out = '<a href="add.php"><button class="btn btn-info">Add Page</button></a>';
-    return $out;
-}
+
 
 include 'layout.php';
