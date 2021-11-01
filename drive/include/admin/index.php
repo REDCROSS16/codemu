@@ -19,8 +19,7 @@ $query = 'SELECT id, title, url FROM pages';
  */
 function addPageButton() : string
 {
-    $out = '<a href="add.php"><button class="btn btn-info">Add Page</button></a>';
-    return $out;
+    return '<a href="add.php"><button class="btn btn-info">Add Page</button></a>';
 }
 
 
