@@ -13,13 +13,16 @@ body {
     color: yellow;
     font-weight: 600;
 }
-.text-success {
+.text-success, .success {
     text-align: center;
     color: green;
+    font-weight: 600;
+    /*box-shadow: 0 0 10px rgba(59, 255, 54, 0.42);*/
 }
 
-.text-fail {
+.text-fail, .error {
     text-align: center;
+    font-weight: 600;
     color: red;
 }
 

@@ -19,13 +19,10 @@ $result = mysqli_query(connect(), $query);
 for ($data = []; $row = mysqli_fetch_assoc($result); $data[] = $row);
 
 echo '<div class="header-block">';
-        
-
-
 
 foreach ( $data as $page) {
     if ($page['url'] == '404') continue;
-    createLink('/codemu/drive/include/?page=' . $page['url'], $page['text']);
+    createLink('/codemu/drive/include/?page=' . $page['url'], $page['title']);
 }
 createLink('/codemu/drive/include/admin', 'ADMIN');
 createLink('/codemu/drive/include/admin', 'LOGIN');

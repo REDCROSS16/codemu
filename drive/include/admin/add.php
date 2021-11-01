@@ -1,17 +1,20 @@
 <?php
 include 'functions.php';
-
-session_start();
-
+include '../elems/init.php';
 
 // загружаем форму через отдельный элемент
 ob_start();
+$title = '';
+$url = '';
+$text = '';
 include ('../elems/admin/form.php');
 $content = ob_get_clean();
-$db = connect();
 
-function addPage ($db) {
+function addPage () {
     if (isset($_POST['title']) && isset($_POST['url']) && isset($_POST['title'])) {
+
+        $db = connect();
+
         $title = mysqli_real_escape_string($db, $_POST['title']);
         $url = mysqli_real_escape_string($db, $_POST['url']);
         $text = mysqli_real_escape_string($db, $_POST['title']);
@@ -21,18 +24,16 @@ function addPage ($db) {
         $isPage = mysqli_fetch_assoc($result)['count'];
 
         if ($isPage) {
-
             $_SESSION['message'] = [
-                'text' => 'url is Exists',
+                'text'   => 'url is Exists',
                 'status' => 'error'
             ];
-
         } else {
             $query = "INSERT INTO pages (title, url, text) VALUES('$title', '$url', '$text')";
             mysqli_query($db, $query) or die(mysqli_error($db));
 
             $_SESSION['message'] = [
-                'text' => 'page add successfully',
+                'text'   => 'Page added successfully!',
                 'status' => 'success'
             ];
             header('Location: /codemu/drive/include/admin/?added=true');
@@ -42,15 +43,5 @@ function addPage ($db) {
     }
 }
 
-//if (isset($_POST['submit'])) {
-//    if (addPage($db)) {
-//        header('Location: /codemu/drive/include/admin/?added=true');
-//    } else {
-//        $info = '<span class="nosucces" style="color:red">Page not added (exists!)</span>';
-//    }
-//
-//}
-
-addpage($db);
-//getPage($db);
+addpage();
 include 'layout.php';

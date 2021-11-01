@@ -2,9 +2,10 @@
 /**
  * редактирование страниц
  */
-
+include '../elems/init.php';
 include 'functions.php';
 $db = connect();
+
 
 // получение информации о контенте для редактирования
 /**
@@ -12,18 +13,16 @@ $db = connect();
  */
 function getPage ($db, $info)
 {
-
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
         $query = "SELECT * FROM pages WHERE id=$id";
         $result = mysqli_query($db, $query);
         $p = mysqli_fetch_assoc($result);
-
+        $content = '';
         include 'layout.php';
 
         if ($p) {
             $pageExists = true;
-
             if (isset($_POST['title']) && isset($_POST['url']) && isset($_POST['text'])) {
                 $title = mysqli_real_escape_string($db, $_POST['title']);
                 $url = mysqli_real_escape_string($db, $_POST['url']);
@@ -34,9 +33,9 @@ function getPage ($db, $info)
                 $text = $p['text'];
             }
 
-            ob_clean();
+//            ob_clean();
             include ('../elems/admin/form.php');
-            $content = ob_get_clean();
+//            $content = ob_get_clean();
         } else {
             $pageExists = false;
             $content = '<div><p>page not found</p></div>';
@@ -70,7 +69,6 @@ function savePage($db) {
                         'status' => 'error'
                     ];
                 }
-
             }
 
             $query = "UPDATE pages SET title = '$title' , url = '$url', text = '$text'  WHERE id= $id";
@@ -85,8 +83,6 @@ function savePage($db) {
         return false;
     }
 }
-//if (isset($_GET['submit'])) {
-//    savePage();
-//}
+
 $info = savePage($db);
 getPage($db, $info);

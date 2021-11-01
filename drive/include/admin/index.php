@@ -1,6 +1,4 @@
 <?php
-
-session_start();
 # роутинг
 if (isset($_GET['page'])) {
     $page = $page = $_GET['page'];
@@ -8,11 +6,12 @@ if (isset($_GET['page'])) {
     $page = 'index';
 }
 # подключение к БД
-include '../db/db.php';
+include '../elems/init.php';
 
-//$db = connect(HOST1, USER1, PASSWORD1, DB_NAME1);
 $db = connect();
 $query = 'SELECT id, title, url FROM pages';
+$result = mysqli_query($db, $query);
+$page = mysqli_fetch_assoc($result);
 
 /**
  * Метод описывает кнопку добавить
@@ -21,10 +20,6 @@ function addPageButton() : string
 {
     return '<a href="add.php"><button class="btn btn-info">Add Page</button></a>';
 }
-
-
-$result = mysqli_query($db, $query);
-$page = mysqli_fetch_assoc($result);
 
 for ($data = []; $row = mysqli_fetch_assoc($result); $data[] = $row);
 $content = '<table class="table">'
@@ -56,7 +51,7 @@ function deletePage($db)
         $query = "Delete FROM pages where id=$id";
         if (mysqli_query($db, $query)) {
             $_SESSION['message'] = [
-                'text' => 'page removed successfully',
+                'text'   => 'page removed successfully',
                 'status' => 'success'
             ];
             header('Location: /codemu/drive/include/admin');
@@ -71,13 +66,4 @@ function deletePage($db)
 }
 
 $isDelete = deletePage($db);
-
-if (isset($_GET['added'])) {
-
-
-    $info = '<span class="success" style="color:green">Page added succesful</span>';
-}
-
-
-
 include 'layout.php';

@@ -6,7 +6,7 @@ if (isset($_GET['page'])) {
     $page = 'index';
 }
 # подключение к
-include 'db/db.php';
+include 'elems/init.php';
 $db = connect();
 $query = "SELECT * FROM pages WHERE url='$page'";
 $result = mysqli_query($db, $query);

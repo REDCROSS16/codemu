@@ -14,10 +14,9 @@
         include '../elems/header.php';?>
     </header>
     <main>
-
-        <?php include 'elems/info.php'; ?>
-
-        <?php echo $content; ?>
+        <?php
+            include 'elems/info.php';
+            echo $content; ?>
     </main>
     <footer>
         <?php
