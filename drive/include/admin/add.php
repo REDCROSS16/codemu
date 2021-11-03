@@ -36,7 +36,7 @@ function addPage () {
                 'text'   => 'Page added successfully!',
                 'status' => 'success'
             ];
-            header('Location: /codemu/drive/include/admin/');
+            header('Location: /codemu/drive/include/admin/'); die();
         }
     } else {
         return '';

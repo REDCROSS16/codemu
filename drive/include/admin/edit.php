@@ -4,6 +4,7 @@
  */
 include '../elems/init.php';
 include 'functions.php';
+
 $db = connect();
 
 
@@ -19,6 +20,7 @@ function getPage ($db, $info)
         $result = mysqli_query($db, $query);
         $p = mysqli_fetch_assoc($result);
         $content = '';
+        $title = 'Edit page';
         include 'layout.php';
 
         if ($p) {
@@ -83,6 +85,6 @@ function savePage($db) {
         return false;
     }
 }
-
+$title = '';
 $info = savePage($db);
 getPage($db, $info);
