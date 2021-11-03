@@ -67,7 +67,7 @@ function savePage($db) {
 
                 if ($isPage == 1) {
                     $_SESSION['message'] = [
-                        'text' => 'This URL is exists!',
+                        'text'   => 'This URL is exists!',
                         'status' => 'error'
                     ];
                 }
@@ -77,14 +77,15 @@ function savePage($db) {
             mysqli_query($db, $query);
 
             $_SESSION['message'] = [
-                'text' => 'Page edited successful',
+                'text'   => "Page '$title' edited successful",
                 'status' => 'success'
             ];
+            header('Location: /codemu/drive/include/admin/'); die();
         }
     } else {
         return false;
     }
 }
-$title = '';
+
 $info = savePage($db);
 getPage($db, $info);

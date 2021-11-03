@@ -51,13 +51,13 @@ function deletePage($db)
         $query = "Delete FROM pages where id=$id";
         if (mysqli_query($db, $query)) {
             $_SESSION['message'] = [
-                'text'   => 'page removed successfully',
+                'text'   => 'Page removed successfully',
                 'status' => 'success'
             ];
-            header('Location: /codemu/drive/include/admin');
+            header('Location: /codemu/drive/include/admin'); die();
         } else {
             $_SESSION['message'] = [
-                'text' => 'page not removed',
+                'text' => 'Page not removed!',
                 'status' => 'error'
             ];
             return  false;
