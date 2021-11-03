@@ -17,7 +17,7 @@ function addPage () {
 
         $title = mysqli_real_escape_string($db, $_POST['title']);
         $url = mysqli_real_escape_string($db, $_POST['url']);
-        $text = mysqli_real_escape_string($db, $_POST['title']);
+        $text = mysqli_real_escape_string($db, $_POST['text']);
 
         $query = "SELECT COUNT(*) as count FROM pages WHERE url= '$url'";
         $result = mysqli_query($db, $query);
@@ -36,7 +36,7 @@ function addPage () {
                 'text'   => 'Page added successfully!',
                 'status' => 'success'
             ];
-            header('Location: /codemu/drive/include/admin/?added=true');
+            header('Location: /codemu/drive/include/admin/');
         }
     } else {
         return '';
