@@ -4,9 +4,9 @@ include '../elems/init.php';
 
 // загружаем форму через отдельный элемент
 ob_start();
-$title = $_POST['title'] ?: '';
-$url = $_POST['url'] ?: '';
-$text = $_POST['text'] ?: '';
+$title = $_POST['title'] ?? '';
+$url = $_POST['url'] ?? '';
+$text = $_POST['text'] ?? '';
 include ('../elems/admin/form.php');
 $content = ob_get_clean();
 
