@@ -47,4 +47,4 @@ function addPage () {
 }
 
 addpage();
-include 'layout.php';
+include 'elems/layout.php';

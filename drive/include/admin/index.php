@@ -66,4 +66,4 @@ function deletePage($db)
 }
 
 $isDelete = deletePage($db);
-include 'layout.php';
+include 'elems/layout.php';

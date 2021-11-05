@@ -21,7 +21,7 @@ function getPage ($db, $info)
         $p = mysqli_fetch_assoc($result);
         $content = '';
         $title = 'Edit page';
-        include 'layout.php';
+        include 'elems/layout.php';
 
         if ($p) {
             $pageExists = true;
