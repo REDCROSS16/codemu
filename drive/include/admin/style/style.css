@@ -56,3 +56,24 @@ table a {
     text-decoration: none;
     color: yellow;
 }
+
+.login-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+}
+.login-form {
+    display: flex;
+}
+
+.login-input {
+    color: #1E2F46;
+    width: 500px;
+}
+.login-btn {
+    display: flex;
+    align-self: center;
+    color: white;
+    background-color: #2b669a;
+}

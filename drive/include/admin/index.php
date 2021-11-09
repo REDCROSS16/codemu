@@ -8,7 +8,7 @@ if (isset($_GET['page'])) {
 # подключение к БД
 include '../elems/init.php';
 
-if (isset($_POST['password']) && $_POST['password'] == '123') {
+if (!empty($_SESSION['auth'])) {
     $db = connect();
     $query = 'SELECT id, title, url FROM pages';
     $result = mysqli_query($db, $query);
@@ -69,12 +69,7 @@ if (isset($_POST['password']) && $_POST['password'] == '123') {
     $isDelete = deletePage($db);
     include 'elems/layout.php';
 } else {
-    echo '<form method="post">'
-            . '<input type="password" name="password">'
-            . '<input type="submit">'
-        . '</form>';
+    header('Location: /codemu/drive/include/admin/login.php'); die();
 }
-?>
-
 
     

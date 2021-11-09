@@ -12,6 +12,7 @@
         <?php
         # подключение модуля nav
         include '../elems/header.php';?>
+        <a href="logout.php">logout</a>
     </header>
     <main>
         <?php
