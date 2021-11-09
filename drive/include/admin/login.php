@@ -1,10 +1,8 @@
 <?php
-
 include '../elems/init.php';
 $title = 'login page';
-include 'elems/head.php';
-
-if (isset($_POST['password']) && $_POST['password'] == '123') {
+?>
+<?php if (isset($_POST['password']) && $_POST['password'] == '123') {
     $_SESSION['auth'] = true;
     $_SESSION['message'] = [
         'status' => 'success',
@@ -14,3 +12,9 @@ if (isset($_POST['password']) && $_POST['password'] == '123') {
 } else {
     include 'elems/loginForm.php';
 }
+?>
+
+<head>
+    <?php include 'elems/head.php';?>
+    <title><?= $title;?></title>
+</head>

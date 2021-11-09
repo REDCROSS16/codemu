@@ -10,41 +10,46 @@ $text = $_POST['text'] ?? '';
 include ('../elems/admin/form.php');
 $content = ob_get_clean();
 
-function addPage () {
-    if (isset($_POST['title']) && isset($_POST['url']) && isset($_POST['title'])) {
+if (!empty($_SESSION['auth'])) {
+    function addPage () {
+        if (isset($_POST['title']) && isset($_POST['url']) && isset($_POST['title'])) {
 
-        $db = connect();
+            $db = connect();
 
-        $title = mysqli_real_escape_string($db, $_POST['title']);
-        $url = mysqli_real_escape_string($db, $_POST['url']);
-        $text = mysqli_real_escape_string($db, $_POST['text']);
+            $title = mysqli_real_escape_string($db, $_POST['title']);
+            $url = mysqli_real_escape_string($db, $_POST['url']);
+            $text = mysqli_real_escape_string($db, $_POST['text']);
 
-        $query = "SELECT COUNT(*) as count FROM pages WHERE url= '$url'";
-        $result = mysqli_query($db, $query);
-        $isPage = mysqli_fetch_assoc($result)['count'];
+            $query = "SELECT COUNT(*) as count FROM pages WHERE url= '$url'";
+            $result = mysqli_query($db, $query);
+            $isPage = mysqli_fetch_assoc($result)['count'];
 
 
-        if ($isPage) {
-            $pageExists = true;
-            $_SESSION['message'] = [
-                'text'   => 'url is Exists',
-                'status' => 'error'
-            ];
+            if ($isPage) {
+                $pageExists = true;
+                $_SESSION['message'] = [
+                    'text'   => 'url is Exists',
+                    'status' => 'error'
+                ];
 
+            } else {
+                $query = "INSERT INTO pages (title, url, text) VALUES('$title', '$url', '$text')";
+                mysqli_query($db, $query) or die(mysqli_error($db));
+
+                $_SESSION['message'] = [
+                    'text'   => 'Page added successfully!',
+                    'status' => 'success'
+                ];
+                header('Location: /codemu/drive/include/admin/'); die();
+            }
         } else {
-            $query = "INSERT INTO pages (title, url, text) VALUES('$title', '$url', '$text')";
-            mysqli_query($db, $query) or die(mysqli_error($db));
-
-            $_SESSION['message'] = [
-                'text'   => 'Page added successfully!',
-                'status' => 'success'
-            ];
-            header('Location: /codemu/drive/include/admin/'); die();
+            return '';
         }
-    } else {
-        return '';
     }
-}
 
-addpage();
-include 'elems/layout.php';
+    addpage();
+    include 'elems/layout.php';
+
+} else {
+    header('Location: /codemu/drive/include/admin/login.php'); die();
+}
