@@ -1,8 +1,11 @@
 RewriteEngine On
 RewriteBase /
 
-RewriteCond %{REQUEST_URI} !^/index.php
-RewriteRule ^(.*?)/?$ index.php?page=1
+#RewriteRule .(html|php)$ index.php
+
+#RewriteRule .* index.php
+#RewriteCond %{REQUEST_URI} !^/index.php
+#RewriteRule ^(.*?)/?$ index.php?page=1
 
 #RewriteRule (.*) index.php?page=1
 
