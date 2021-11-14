@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -9,7 +12,9 @@
     <title>Practice</title>
 </head>
 <body>
+    <?php include 'functions.php'?>
     <?php include 'page1.php';?>
+<script src="script.js"></script>
 </body>
 </html>
 
