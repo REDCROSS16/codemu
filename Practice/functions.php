@@ -24,9 +24,15 @@ function sumOfDivisors($num) : int
     return array_sum($result) - $num;
 }
 
-
+# проверка на совершенство
 function checkForPerfection ($num)
 {
     return (sumOfDivisors($num) === $num) ? true : false;
 }
 
+# проверка на счастливость билета
+function checkHappyTicket($num) {
+    if ($num < 100000 || $num > 999999) return false;
+    $num = str_split((string)$num);
+    return (((int)$num[0] + (int)$num[1] + (int)$num[2]) === ((int)$num[3] + (int)$num[4] + (int)$num[5])) ? true : false;
+}

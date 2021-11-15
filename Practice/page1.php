@@ -56,3 +56,39 @@ echo "496 и 496 дружелюбны<br>";
     } else {
         echo "<p style='color:red'>Число $perfNum несовершенно!</p>";
     }
+?>
+
+<h4>Задача 4</h4>
+<p>Найдите все счастливые билеты. Счастливый билет - это билет, в котором сумма первых трех цифр его номера равна сумме вторых трех цифр его номера. </p>
+<?php
+$time_4 = time();
+$countOfHappyTicket = 0;
+for ($i = 100000; $i < 1000000; $i++) {
+    if (checkHappyTicket($i)) {
+//        echo "<h4 style='color:green'>Билет $i СЧАСТЛИВЫЙ!</h4> ";
+        $countOfHappyTicket ++;
+////        echo '<h4 style="color:green">СЧАСТЛИВЫЙ!</h4>';
+    } else {
+////        echo '<h4 style="color:red">НЕСЧАСТЛИВЫЙ!</h4>';
+    }
+}
+echo 'Счастливых билетов : ' . $countOfHappyTicket . ' штук!<br>';
+echo 'Заняло времени: ' . (time()-$time_4) . ' секунд';
+?>
+
+<h4>Задача 5</h4>
+<p>Сделайте функцию, которая параметром будет принимать два числа и возвращать массив их общих делителей. </p>
+<form action="">
+    <input type="number" name="num_5_1" placeholder="Введите 1 число">
+    <input type="number" name="num_5_2" placeholder="Введите 2 число">
+    <input type="submit">
+</form>
+<?php
+    $num_5_1 = $_GET['num_5_1'];
+    $num_5_2 = $_GET['num_5_2'];
+
+$divisorsNum5_1 = getNumOfDivisors($num_5_1);
+$divisorsNum5_2 = getNumOfDivisors($num_5_2);
+echo '<pre>Общие элементы двух массивов ';
+print_r(array_intersect($divisorsNum5_1, $divisorsNum5_2));
+echo '</pre>';
