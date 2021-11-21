@@ -144,7 +144,8 @@ class Tag implements iTag
 
     // Установка текста:
     public function setText($text) {
-        return $this->text = $text;
+        $this->text = $text;
+        return $this;
     }
 }
 
