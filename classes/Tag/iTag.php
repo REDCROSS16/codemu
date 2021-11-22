@@ -1,5 +1,4 @@
 <?php
-
 interface iTag
 {
     // Геттер имени:

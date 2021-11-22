@@ -90,7 +90,7 @@ class Tag implements iTag
     }
 
     // добавляет массив аттрибутов для HTML тега
-    public function setAttributes( $array)
+    public function setAttributes($array)
     {
         foreach ($array as $name=>$value)  {
             $this->setAttr($name, $value);

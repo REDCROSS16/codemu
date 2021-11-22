@@ -1,6 +1,6 @@
 <?php
 # своеобразное меню
-include 'Link.php';
+include '../Link/Link.php';
 ?>
     <style>
         .menu {
@@ -23,25 +23,18 @@ include 'Link.php';
         .menu a:hover {
             color: #abc1d7;
         }
+        a.active-menu {
+            color: yellow;
+        }
     </style>
 
 <?php
-echo '<div class="menu">';
-echo (new Link())->setText('Главная')->setAttr('href', "/codemu/classes/Link/page1.php");
-echo (new Link())->setText('Статьи')->setAttr('href', "/codemu/classes/Link/page2.php");
-echo (new Link())->setText('Новости')->setAttr('href', "/codemu/classes/Link/page3.php");
-echo (new Link())->setText('Войти')->setAttr('href', "/codemu/classes/Link/page4.php");
-echo (new Link())->setText('Справочная информация')->setAttr('href', "/codemu/classes/Link/page5.php");
+echo '<div class="menu">'
+. (new Link())->setText('Главная')->setAttr('href', "/codemu/classes/pages/page1.php")
+. (new Link())->setText('Статьи')->setAttr('href', "/codemu/classes/pages/page2.php")
+. (new Link())->setText('Новости')->setAttr('href', "/codemu/classes/pages/page3.php")
+. (new Link())->setText('Войти')->setAttr('href', "/codemu/classes/pages/page4.php")
+. (new Link())->setText('Справочная информация')->setAttr('href', "/codemu/classes/pages/page5.php")
+    .'</div>';
 
-
-//for ($i=0; $i<5; $i++) {
-//    $l = new Link();
-//    if ($i === 0) {
-//        $link = '/';
-//    } else {
-//        $link = $i . '.php';
-//    }
-//    $l->setText("Кнопка номер $i")->setAttr('href', "/codemu/classes/Link/page$link") ;
-//    echo $l ;
-//}
-echo '</div>';
+//echo $_SERVER['REQUEST_URI'];
