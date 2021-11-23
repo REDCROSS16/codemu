@@ -149,6 +149,7 @@ class Tag implements iTag
     }
 }
 
+# EXAMPLES
 //$h3 = new Tag('h3', 'Обычный заголовок третьего уровня!');
 //echo $h3->setAttr('class', 'blocked')
 //        ->removeAttr('class')

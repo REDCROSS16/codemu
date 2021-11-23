@@ -1,9 +1,9 @@
 <?php
 include '../Link/Menu.php';
-include '../HtmlList/HtmlList.php';
-include '../HtmlList/ListItem.php';
-include '../HtmlList/Ol.php';
-include '../HtmlList/Ul.php';
+include '../Tag/HtmlList/HtmlList.php';
+include '../Tag/HtmlList/ListItem.php';
+include '../Tag/HtmlList/Ol.php';
+include '../Tag/HtmlList/Ul.php';
 
 
 echo '<h1 style="text-align: center">It\'s main page</h1>';

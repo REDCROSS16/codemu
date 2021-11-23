@@ -22,7 +22,6 @@ class Input extends Tag
                 $this->setAttr('value', $value);
             }
         }
-
         return parent::open(); // вызываем метод open родителя
     }
 }

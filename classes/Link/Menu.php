@@ -1,6 +1,6 @@
 <?php
 # своеобразное меню
-include '../Link/Link.php';
+include '../Tag/Link/Link.php';
 ?>
     <style>
         .menu {
