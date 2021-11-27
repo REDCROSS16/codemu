@@ -4,10 +4,9 @@ include '../Tag/HtmlList/HtmlList.php';
 include '../Tag/HtmlList/ListItem.php';
 include '../Tag/HtmlList/Ol.php';
 include '../Tag/HtmlList/Ul.php';
-
+include '../CookieShell/CookieShell.php';
 
 echo '<h1 style="text-align: center">It\'s main page</h1>';
-
 
 $list = new HtmlList('ol');
 
@@ -33,7 +32,6 @@ $ul = new Ul();
 foreach ($listOfItems as $li) {
     $ol->addItem((new ListItem())->setText($li));
     $ul->addItem((new ListItem())->setText($li));
-
 }
 
 echo $ol->show();
