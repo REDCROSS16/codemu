@@ -71,9 +71,10 @@ class FileManipulator
         return false;
     }
 
-    public function weigh($filePath)
+    public function weigh(string $filePath, $SI): string
     {
-        // узнает размер файла
+        $SI = ['kb' => '']
+        return filesize($filePath);
     }
 }
 
@@ -86,5 +87,10 @@ $FM = new FileManipulator();
 
 //$FM->replace('file2/2.txt', 'file3/2.txt');
 
-$FM->create('r.txt');
-$FM->replace('r.txt', 'logs/r.txt');
+//$FM->create('r.txt');
+//$FM->replace('r.txt', 'logs/r.txt');
+
+$a = range(1, 1000);
+$FM->create('3.txt');
+//file_put_contents('3.txt', $a);
+echo $FM->weigh('3.txt');
