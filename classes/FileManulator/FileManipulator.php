@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Class FileManipulator
+ * Класс управляет файлами
+ */
 class FileManipulator
 {
     /**
@@ -71,26 +75,15 @@ class FileManipulator
         return false;
     }
 
-    public function weigh(string $filePath, $SI): string
+    public function weigh(string $filePath, $SI = 'B'): string
     {
-        $SI = ['kb' => '']
-        return filesize($filePath);
+        $siArray = [
+            'B'  => 1,
+            'KB' => 1024,
+            'MB' => pow(1024, 2),
+            'GB' => pow(1024, 3),
+            'TB' => pow(1024, 4)
+        ];
+        return filesize($filePath) / $siArray[$SI] . " $SI";
     }
 }
-
-$FM = new FileManipulator();
-//$FM->create('1.txt');
-//$FM->create('2.txt');
-
-//$FM->copy('2.txt', 'file1/2.txt');
-//$FM->rename('1.txt', 'randomtext1.txt');
-
-//$FM->replace('file2/2.txt', 'file3/2.txt');
-
-//$FM->create('r.txt');
-//$FM->replace('r.txt', 'logs/r.txt');
-
-$a = range(1, 1000);
-$FM->create('3.txt');
-//file_put_contents('3.txt', $a);
-echo $FM->weigh('3.txt');
