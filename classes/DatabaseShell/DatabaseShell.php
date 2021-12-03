@@ -21,12 +21,13 @@ class DatabaseShell
         $fields = '';
         $values = '';
         foreach ($data as $field => $value) {
-            $fields += $field + ',';
-            $values += $value + ',';
+            $fields .= '' . $field . ',';
+            $values .= '\'' . $value . '\',';
         }
         $fields = rtrim($fields,',');
-        $velues = rtrim($values,',');
-        $query = "INSERT INTO $table($fields) VALUES $"
+        $values = rtrim($values,',');
+        $query = "INSERT INTO $table($fields) VALUES($values)";
+        return mysqli_query($this->link, $query);
     }
 
     /**
@@ -36,7 +37,8 @@ class DatabaseShell
      */
     public function del($table, $id)
     {
-
+        $query = "DELETE FROM $table WHERE id=$id";
+        return mysqli_query($this->link, $query);
     }
 
     /**
@@ -54,7 +56,7 @@ class DatabaseShell
      * @param $table
      * @param $id
      */
-    public function select($table, $id)
+    public function get($table, $id)
     {
         $query = "SELECT * FROM $table WHERE id=$id";
         $result = mysqli_query($this->link, $query);
@@ -66,7 +68,7 @@ class DatabaseShell
      * @param $table
      * @param $ids
      */
-    public function selectAll($table, $ids)
+    public function getAll($table, $ids)
     {
         $result = [];
         foreach ($ids as $id) {
@@ -88,7 +90,8 @@ class DatabaseShell
 
 $db = new DatabaseShell('localhost', 'root','root', 'test_16');
 //$db->save('users', ['name' => 'user1', 'age' => '23']);
-echo '<pre>';
-print_r($db->selectAll('pages', [1,2,3,4]));
-echo '</pre>';
+//echo '<pre>';
+//print_r($db->selectAll('pages', [1,2,3,4]));
+//echo '</pre>';
 
+//$db->del('users', 10);
