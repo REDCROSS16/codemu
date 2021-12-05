@@ -48,7 +48,10 @@ class DatabaseShell
      */
     public function delAll($table, $ids)
     {
-
+        foreach ($ids as $id) {
+            $this->del($table, $id);
+        }
+        return $this;
     }
 
     /**
@@ -72,7 +75,7 @@ class DatabaseShell
     {
         $result = [];
         foreach ($ids as $id) {
-            $result[] = $this->select($table, $id);
+            $result[] = $this->get($table, $id);
         }
         return $result;
     }
@@ -84,14 +87,28 @@ class DatabaseShell
      */
     public function selectAll($table, $condition)
     {
-        //
+        $query = "SELECT * FROM $table $condition";
+        $result = mysqli_query($this->link, $query);
+        return mysqli_fetch_all($result);
     }
 }
 
-$db = new DatabaseShell('localhost', 'root','root', 'test_16');
+//$db = new DatabaseShell('localhost', 'root','root', 'test_16');
 //$db->save('users', ['name' => 'user1', 'age' => '23']);
 //echo '<pre>';
 //print_r($db->selectAll('pages', [1,2,3,4]));
 //echo '</pre>';
 
 //$db->del('users', 10);
+//$db->del('users', 3);
+//$db->delAll('users', [1, 2, 3, 5]);
+//$user = $db->get('users', 11);
+//var_dump($user);
+//
+//$users = $db->getAll('users', [11, 12, 13, 15]);
+//echo '<pre>';
+//print_r( $users);
+//echo '</pre>';
+
+
+//print_r($db->selectAll('users', 'where id>10'));
