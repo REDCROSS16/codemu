@@ -19,7 +19,7 @@ $listOfItems = [
     'Список6',
     ];
 
-//foreach ($listOfItems as $li) {
+//foreach ($listOfItems as $li) {   
 //    $list->addItem((new ListItem())->setText($li));
 //}
 //
